@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogo de Libros</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="container text-center mt-5 pb-2">
+            <h1 class="mt-4 mb-4 text-center">Tienda de Libros</h1>
+            <div class="container mb-2 text-center">
+                <a href="consultaLibros.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Libros</a> |
+                <a href="registroLibros.html" class="ml-3"><i class="fas fa-home"></i> Registrar Libros</a> |
+                <a href="consultaAutores.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Autores</a> |
+                <a href="registrarAutores.html" class="ml-3"><i class="fas fa-home"></i> Registrar Autores</a>
+            </div>
+        </div>
+
+
+        <div>
+            <input type="text" id="txtNombreAutor">
+            <button id="btnGuardarAutor">Guardar Autor</button>
+        </div>
+
+    </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <script>
+            (function () {
+
+                $('#btnGuardarAutor').on('click', function () {
+                    $.ajax({
+                        url:'http://localhost:5000/autores/registrar',
+                        type:'POST' ,
+                        data:{
+                            nombre:$('#txtNombreAutor').val()
+                        },
+                        dataType:'json' ,
+                        success:function (resultado) {
+                            console.log(resultado);
+                        },
+                        error:function (err) {
+                            console.error(err);
+                        }
+                    });
+                });
+
+                $.ajax({
+                    url:'http://localhost:5000/libros/consultar',
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log(resultado);
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+
+                $.ajax({
+                    url:'http://localhost:5000/autores/consultar',
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log('Autores: ', resultado);
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+            })();
+
+        </script>
+
+</body>
+</html>

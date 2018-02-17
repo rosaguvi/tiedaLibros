@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Registro de Libros</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container text-center mt-5 pb-2">
+            <h1 class="mt-4 mb-4 text-center">Registro de Libros</h1>
+            <div class="container mb-2 text-right">
+                <div class="container mb-2 text-center">
+                    <a href="index.html" class="mr-3"><i class="fas fa-home"></i> Volver al Inicio </a> |
+                    <a href="consultaLibros.html" class="mr-3 ml-3"><i class="fas fa-address-book"></i>  Consultar Libros</a> |
+                    <a href="consultaAutores.html" class="mr-3 ml-3"><i class="fas fa-home"></i>  Consultar Autores</a> |
+                    <a href="registrarAutores.html" class="ml-3"><i class="fas fa-home"></i> Registrar Autores</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="formulario" class="container border-top pt-4">
+            <div class="row">
+
+                <div class="form-group col-md-5">
+                    <label for="txtNombre">Nombre del Libro:</label>
+                    <input type="text" class="form-control" id="txtNombre" required>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="cmbTipoDocumento">Autor:</label>
+                    <select id="cmbTipoDocumento" class="form-control" required></select>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="txtApellido">Precio del Libro:</label>
+                    <input type="text" class="form-control" id="txtApellido" required>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="txtTelefono">Dirección URL del Libro:</label>
+                    <input type="text" class="form-control" id="txtTelefono">
+                </div>
+
+                <div class="form-group col-md-12 text-right">
+                    <button id="btnGuardar" class="btn btn-success btn-enlinea"><i class="fas fa-save"></i> Guardar</button>
+                    <button id="btnLimpiar" class="btn btn-danger btn-enlinea"><i class="fas fa-times"></i> Limpiar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/plugins.js"></script>
+
+    <script>
+        (function () {
+
+            // $('#btnGuardarAutor').on('click', function () {
+            //     $.ajax({
+            //         url:'http://localhost:5000/autores/registrar',
+            //         type:'POST' ,
+            //         data:{
+            //             nombre:$('#txtNombreAutor').val()
+            //         },
+            //         dataType:'json' ,
+            //         success:function (resultado) {
+            //             console.log(resultado);
+            //         },
+            //         error:function (err) {
+            //             console.error(err);
+            //         }
+            //     });
+            // });
+
+            $.ajax({
+                url:'http://localhost:5000/libros/consultar',
+                type:'GET',
+                dataType:'json',
+                success:function(resultado){
+                    console.log(resultado);
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+
+            $.ajax({
+                url:'http://localhost:5000/autores/consultar',
+                type:'GET',
+                dataType:'json',
+                success:function(resultado){
+                    console.log('Autores: ', resultado);
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+        })();
+
+    </script>
+
+
+</body>
+</html>
