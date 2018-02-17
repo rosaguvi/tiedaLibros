@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e269c3a-c38d-4a09-ba6b-df2efcbc09a4" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/clienteweb/index.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/clienteweb/gestionarAutores.html" afterPath="$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
-      <change beforePath="$PROJECT_DIR$/clienteweb/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/clienteweb/gestionarLibros.html" afterPath="$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
       <change beforePath="$PROJECT_DIR$/tiendalibros/app.js" afterPath="$PROJECT_DIR$/tiendalibros/app.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,24 +20,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gestionarAutores.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gestionarAutores.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="109" column="34" lean-forward="true" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
+            <state relative-caret-position="136">
+              <caret line="8" column="78" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="8" selection-end-column="78" />
               <folding>
-                <element signature="e#3785#3792#1" expanded="true" />
+                <element signature="e#2256#2263#1" expanded="true" />
+                <element signature="e#5110#5117#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gestionarLibros.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="17" column="89" lean-forward="false" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gestionarLibros.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-646">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="374">
+              <caret line="223" column="46" lean-forward="false" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
+              <folding>
+                <element signature="e#2324#2331#1" expanded="true" />
+                <element signature="e#5712#5719#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,8 +59,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            <state relative-caret-position="204">
+              <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -55,6 +71,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>consultarLibroId</find>
+      <find>formulario</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -66,6 +83,7 @@
         <option value="$PROJECT_DIR$/clienteweb/index.html" />
         <option value="$PROJECT_DIR$/tiendalibros/app.js" />
         <option value="$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
+        <option value="$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
       </list>
     </option>
   </component>
@@ -114,12 +132,6 @@
             <path>
               <item name="TiendaLibros" type="b2602c69:ProjectViewProjectNode" />
               <item name="TiendaLibros" type="462c0819:PsiDirectoryNode" />
-              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TiendaLibros" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TiendaLibros" type="462c0819:PsiDirectoryNode" />
               <item name="tiendalibros" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -138,6 +150,9 @@
     <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file://C:/xampp/htdocs/TiendaLibros/tiendalibros/app.js" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TiendaLibros\clienteweb" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\TiendaLibros\clienteweb\js" />
     </key>
@@ -168,12 +183,12 @@
       <option name="presentableId" value="Default" />
       <updated>1518877662966</updated>
       <workItem from="1518877664349" duration="4460000" />
-      <workItem from="1518883859873" duration="12700000" />
+      <workItem from="1518883859873" duration="20943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17160000" />
+    <option name="totallyTimeSpent" value="25403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -214,7 +229,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3785#3792#1" expanded="true" />
+            <element signature="e#2256#2263#1" expanded="true" />
+            <element signature="e#5110#5117#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -223,7 +239,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="57" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2324#2331#1" expanded="true" />
+            <element signature="e#5712#5719#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -235,19 +254,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/index.html" />
     <entry file="file://$PROJECT_DIR$/clienteweb/css/datepicker.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1122">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -260,20 +270,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
+    <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        <state relative-caret-position="261">
+          <caret line="17" column="89" lean-forward="false" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="109" column="34" lean-forward="true" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
+        <state relative-caret-position="136">
+          <caret line="8" column="78" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="8" selection-end-column="78" />
           <folding>
-            <element signature="e#3785#3792#1" expanded="true" />
+            <element signature="e#2256#2263#1" expanded="true" />
+            <element signature="e#5110#5117#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="223" column="46" lean-forward="false" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
+          <folding>
+            <element signature="e#2324#2331#1" expanded="true" />
+            <element signature="e#5712#5719#1" expanded="true" />
           </folding>
         </state>
       </provider>

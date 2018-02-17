@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
     <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
    </head>
 <body>
@@ -15,50 +14,16 @@
         <div class="container text-center mt-5 pb-2">
             <h1 class="mt-4 mb-4 text-center">Gestión de Autores</h1>
             <div class="container mb-2 text-center">
-                <a href="consultaLibros.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Libros</a> |
-                <a href="gestionarLibros.html" class="ml-3"><i class="fas fa-home"></i> Registrar Libros</a> |
-                <a href="consultaAutores.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Autores</a> |
-                <a href="gestionarAutores.html" class="ml-3"><i class="fas fa-home"></i> Registrar Autores</a>
-            </div>
-        </div>
-
-        <div id="formulario" class="container border-top pt-4">
-            <div class="row">
-
-                <div class="form-group col-md-4">
-                    <label for="txtNombreAutor">Nombre del Autor:</label>
-                    <input type="text" class="form-control" id="txtNombreAutor" required>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label for="cmbNacionalidad">Nacionalidad:</label>
-                    <select id="cmbNacionalidad" class="form-control" required></select>
-                </div>
-
-                <div class='col-sm-4'>
-                    <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
-                    <input type="text" class="form-control" id="txtFechaNacimiento" />
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label for="txtFoto">Foto:</label>
-                    <input type="text" class="form-control" id="txtFoto" />
-                </div>
-
-                <div class="form-group col-md-5">
-                    <label for="txtBiografia">Biografía:</label>
-                    <textarea id="txtBiografia" class="form-control"></textarea>
-                </div>
-
-                <div class="form-group col-md-12 text-right">
-                    <button id="btnGuardarAutor" class="btn btn-success btn-enlinea"><i class="fas fa-save"></i> Guardar</button>
-                    <button id="btnLimpiar" class="btn btn-danger btn-enlinea"><i class="fas fa-times"></i> Limpiar</button>
-                </div>
-
+                <a href="index.html" class="mr-3"><i class="fas fa-home"></i> Volver al Inicio</a> |
+                <a href="gestionarLibros.html" class="ml-3"><i class="fas fa-address-book"></i> Gestionar Libros</a>
             </div>
         </div>
 
         <div class="container">
+            <div class="form-group col-md-12 text-right">
+                <button id="btnNuevoAutor" class="btn btn-success" data-toggle="modal" data-target="#GuardarAutorModal">
+                    <i class="fas fa-plus-square"></i> Nuevo </button>
+            </div>
             <table id="tblAutores" class="table table-striped">
                 <thead>
                     <tr>
@@ -75,7 +40,68 @@
 
     </div>
 
+   <!--
+    Modal de Agregar Autor
+    -->
+    <div class="modal fade" id="GuardarAutorModal" tabindex="-1" role="dialog" aria-labelledby="GuardarAutorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GuardarAutorModalLabel">Nuevo del Autor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
+                    <div id="formulario" class="container border-top pt-4">
+                        <div class="row">
+
+                            <div class="form-group col-md-12">
+                                <label for="txtNombreAutor">Nombre del Autor:</label>
+                                <input type="text" class="form-control" id="txtNombreAutor" required>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="cmbNacionalidad">Nacionalidad:</label>
+                                <select id="cmbNacionalidad" class="form-control" required></select>
+                            </div>
+
+                            <div class='col-sm-6'>
+                                <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                                <input type="text" class="form-control" id="txtFechaNacimiento" />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="txtFoto">Foto:</label>
+                                <input type="text" class="form-control" id="txtFoto" />
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="txtBiografia">Biografía:</label>
+                                <textarea id="txtBiografia" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group col-md-12 text-right">
+                        <button id="btnGuardarAutor" class="btn btn-success btn-enlinea"><i class="fas fa-save"></i> Guardar</button>
+                        <button id="btnLimpiar" class="btn btn-danger btn-enlinea"><i class="fas fa-times"></i> Limpiar</button>
+                        <button type="button" class="btn btn-secondary" id="btnCerrar" >Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    Fin Modal de Agregar Autor
+    -->
+    <!--
+      Detalle del autor
+     -->
     <div class="modal fade" id="detalleAutorModal" tabindex="-1" role="dialog" aria-labelledby="detalleAutorModallLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -109,7 +135,7 @@
                                 <input type="text" class="form-control" id="txtMosFoto" />
                             </div>
 
-                            <div class="form-group col-md-10">
+                            <div class="form-group col-md-12">
                                 <label for="txtMosBiografia">Biografía:</label>
                                 <textarea id="txtMosBiografia" class="form-control"></textarea>
                             </div>
@@ -133,7 +159,7 @@
         {{#each autores}}
             <tr>
                 <td headers="thNombre">{{this.nombre}}</td>
-                <td headers="thNacionalidad">{{this.nacionalidad}}</td>
+                <td headers="thNacionalidad">{{this.nacionalidad.pais}}</td>
                 <td headers="thFecha_nacimiento">{{this.fecha_nacimiento}}</td>
                 <td headers="thDetalle">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data_id = "{{this._id}}">
@@ -149,6 +175,10 @@
 
             (function () {
 
+                $('#btnLimpiar').on('click', limpiarFormulario);
+
+                $('#btnCerrar').on('click', cerrarFormulario);
+
                 $('#btnGuardarAutor').on('click', function () {
                     $.ajax({
                         url:'http://localhost:5000/autores/registrar',
@@ -163,6 +193,9 @@
                         dataType:'json' ,
                         success:function (resultado) {
                             console.log(resultado);
+                            limpiarFormulario() ;
+                            cerrarFormulario();
+
                         },
                         error:function (err) {
                             console.error(err);
@@ -217,8 +250,6 @@
 
                 tbody.empty();  // limpiar el contenido
 
-               console.log (autores) ;
-
                 if (!Array.isArray(autores)){  //Valida que el parametro usuarios sea un arreglo
                     mostrarMensajeSinDatos();
                     return false;
@@ -249,7 +280,7 @@
                 var bodyModal = $('#detalleAutorModal') ;
 
                 bodyModal.find('#txtMosNombreAutor').val(autor.nombre);
-                bodyModal.find('#txtMosNacionalidad').val(autor.nacionalidad);
+                bodyModal.find('#txtMosNacionalidad').val(autor.nacionalidad.pais);
                 bodyModal.find('#txtMosFechaNacimiento').val(autor.fecha_nacimiento);
                 bodyModal.find('#txtMosFoto').val(autor.foto);
                 bodyModal.find('#txtMosBiografia').text(autor.biografia);
@@ -265,7 +296,6 @@
                     type:'GET',
                     dataType:'json',
                     success:function(resultado){
-                        sessionStorage.setItem('autores', JSON.stringify(resultado.data));
                         cargarAutores(resultado.data) ;
                         //console.error(resultado);
                     },
@@ -276,10 +306,22 @@
 
             }
 
+            function limpiarFormulario(){
+                var formulario = $('#GuardarAutorModal');
+                formulario.find('input[type="text"], textarea, input[type="email"]').val('');
+                formulario.find('select').val('-1');
+                formulario.find('.is-valid , .is-invalid').removeClass('is-invalid').removeClass('is-valid') ;
+            }
+
+            function cerrarFormulario(){
+                var bodyModalGuardar = $('#GuardarAutorModal') ;
+                bodyModalGuardar.modal('hide') ;
+                consultarAutores();
+            }
+
             function mostrarMensajeSinDatos(){
                 console.log('No hay registros');
             }
-
 
         </script>
 

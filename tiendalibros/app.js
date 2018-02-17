@@ -49,9 +49,11 @@ function registrarLibro(req, res){
         nombre: req.body.nombre,
         autor: new ObjectId(req.body.autor),
         precio: parseFloat(req.body.precio),
-        portada: req.body.portada
+        portada: req.body.portada ,
+        fecha_publicacion: req.body.fecha_publicacion ,
+        editorial: req.body.editorial ,
+        prologo: req.body.prologo
     };
-
     libros.insertOne(nuevoLibro, function(err, resultado){
         if (err) { return validarError(res, err, 'Ocurrió un error al registrar el libro') }
         res.send({mensaje:'Libro registrado exitosamente', codigo: 2 });
@@ -86,19 +88,151 @@ function registrarAutor(req, res){
     });
 };
 
+/****   Consultas ****/
 
 function consultarLibros(req, res){
-	var libros = db.collection('libros');
-	var opciones = {
-        collation:{locale:'es'},
-		sort:{'precio': -1, 'nombre': 1}
-	};
-	libros.find({}, opciones).toArray(function(err, data){
-        if (err) { return validarError(res, err, 'Ocurrió un error al consultar los libros') }
-        res.send(construirRespuestaDatos(data, 'Libros encontrados'));
-	});
+    var libros = db.collection('libros');
+    libros.aggregate(
+        [
+            {
+                '$lookup': {
+                    from: "autores",
+                    localField: "autor",
+                    foreignField: "_id",
+                    as: "autor"
+                },
+            },
+            { "$unwind": "$autor" },
+            { $sort:{'precio': -1, 'nombre': 1} }
+        ],
+        function(err, cursor) {
+            cursor.toArray(function(err, documents) {
+                if (err) { return validarError(res, err, 'Ocurrió un error al consultar los libros') }
+                res.send(construirRespuestaDatos(documents, 'Libros encontrados'));
+            });
+        }
+    );
 }
 
+
+function consultarAutores(req, res){
+    var autores = db.collection('autores');
+    autores.aggregate(
+        [
+            {
+                $lookup:{
+                    from:'paises',
+                    localField:'nacionalidad',
+                    foreignField:'_id',
+                    as:'nacionalidad'
+                }
+            },
+            { "$unwind": "$nacionalidad" },
+            {  $sort:{ 'nombre': 1} },
+        ],
+        function(err, cursor) {
+            cursor.toArray(function(err, documents) {
+                if (err) { return validarError(res, err, 'Ocurrió un error al consultar los Autores') }
+                res.send({mensaje:'Autores encontrado', codigo:1, data:documents});
+            });
+        }
+    );
+}
+
+
+function consultarLibroId(req, res){
+    var id = new ObjectId(req.params.id);
+    var libros = db.collection('libros');
+    libros.aggregate(
+        [
+            {
+                $lookup:{
+                    from:'autores',
+                    localField:'autor',
+                    foreignField:'_id',
+                    as:'autor'
+                }
+            },
+            { "$unwind": "$autor" },
+            {   $match: { _id : new ObjectId(id) } }
+        ],
+        function(err, cursor) {
+            cursor.toArray(function(err, documents) {
+                if (err) { return validarError(res, err, 'Ocurrió un error al consultar los libros') }
+                res.send({mensaje:'Libro encontrado', codigo:1, data:documents[0]});
+            });
+        }
+    );
+}
+
+function consultarAutorPorId(req, res){
+    var id = new ObjectId(req.params.id);
+    var autor = db.collection('autores');
+    autor.aggregate(
+        [
+            {
+                $lookup:{
+                    from:'paises',
+                    localField:'nacionalidad',
+                    foreignField:'_id',
+                    as:'nacionalidad'
+                }
+            },
+            { "$unwind": "$nacionalidad" },
+            { $match: { _id :id } }
+        ],
+        function(err, cursor) {
+            cursor.toArray(function(err, documents) {
+                if (err) { return validarError(res, err, 'Ocurrió un error al consultar el Autor') }
+                res.send({mensaje:'Autor encontrado', codigo:1, data:documents[0]});
+            });
+        }
+    );
+}
+
+function consultarLibrosPorAutor(req, res){
+    var autores = db.collection('libros');
+    var idAutor = req.params.autor;
+    console.log(idAutor);
+    autores.find({autor:new ObjectId(idAutor)}).toArray(function(err, data){
+        if (err) { return validarError(res, err, 'Error al consultar libros por autor') }
+        res.send(construirRespuestaDatos(data, 'Libros encontrados por autor'));
+    });
+}
+
+function consultarLibrosPorNombre(req, res){
+    var q = req.params.q;
+    console.log(q);
+    var regExpr = new RegExp(q, 'i');
+    var libros = db.collection('libros');
+    libros.aggregate(
+        [
+            {
+                $lookup:{
+                    from:'autores',
+                    localField:'autor',
+                    foreignField:'_id',
+                    as:'autor'
+                }
+            },
+            { "$unwind": "$autor" },
+            {   $sort:{'precio': -1, 'nombre': 1} },
+            {   $match: { nombre : { $regex: regExpr, $options:'i' } } }
+        ],
+        function(err, cursor) {
+            cursor.toArray(function(err, documents) {
+                if (err) { return validarError(res, err, 'Ocurrió un error al consultar los libros') }
+                res.send(construirRespuestaDatos(documents, 'Libros encontrados'));
+            });
+        }
+    );
+}
+
+/****  Termina Consultas ****/
+
+
+
+/**** mias *****/
 
 function consultarPaises(req, res){
     var paises = db.collection('paises');
@@ -113,61 +247,7 @@ function consultarPaises(req, res){
 }
 
 
-function consultarAutores(req, res){
-	var libros = db.collection('autores');
-	var opciones = {
-        collation:{locale:'es'},
-	    sort:{'nombre': 1}
-    };
-	libros.find({}, opciones).toArray(function(err, data){
-        if (err) { return validarError(res, err, 'Ocurrió un error al consultar los autores') }
-        res.send(construirRespuestaDatos(data, 'Autores encontrados'));
-	});
-}
-
-
-
-function consultarLibroId(req, res){
-	var id = new ObjectId(req.params.id);
-	var post = db.collection('libros');
-	post.findOne({_id:id}, function(err, data){
-        if (err) { return validarError(res, err, 'Error al consultar el libro por ID') }
-        res.send({mensaje:'Libro encontrado', codigo:1, data:data});
-	});
-}
-
-function consultarAutorPorId(req, res){
-    var id = new ObjectId(req.params.id);
-    var post = db.collection('autores');
-    post.findOne({_id:id}, function(err, data){
-        if (err) { return validarError(res, err, 'Error al consultar el autor por ID') }
-        res.send({mensaje:'Autor encontrado', codigo:1, data:data});
-    });
-}
-
-
-
-function consultarLibrosPorAutor(req, res){
-	var autores = db.collection('libros');
-	var idAutor = req.params.autor;
-	console.log(idAutor);
-	autores.find({autor:new ObjectId(idAutor)}).toArray(function(err, data){
-        if (err) { return validarError(res, err, 'Error al consultar libros por autor') }
-        res.send(construirRespuestaDatos(data, 'Libros encontrados por autor'));
-	});
-}
-
-function consultarLibrosPorNombre(req, res){
-    var q = req.params.q;
-    console.log(q);
-    var regExpr = new RegExp(q, 'i');
-
-    var libros = db.collection('libros');
-    libros.find({nombre:regExpr}).toArray(function(err, data){
-        if (err) { return validarError(res, err, 'Error al consultar libros por nombre') }
-        res.send(construirRespuestaDatos(data, 'Libros encontrados por nombre'));
-    });
-}
+/**** Termina mias *****/
 
 function validarError(res, err, mensaje) {
     console.error(err);
@@ -191,9 +271,8 @@ function construirRespuestaDatos(data, mensaje) {
 }
 
 MongoClient.connect('mongodb://rsagudelo:8327rosmira@ds239648.mlab.com:39648/tiendalibros', function(err, client){
-	if (err) { return console.log(err); }
-	db = client.db('tiendalibros');
-	app.listen(5000);
-	console.log('Servidor corriendo en puerto 5000');	
+    if (err) { return console.log(err); }
+    db = client.db('tiendalibros');
+    app.listen(5000);
+    console.log('Servidor corriendo en puerto 5000');
 });
-
