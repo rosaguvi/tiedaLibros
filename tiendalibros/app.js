@@ -31,6 +31,8 @@ app.use(function (req, res, next) {
 app.post('/libros/registrar', registrarLibro);
 app.post('/autores/registrar', registrarAutor);
 
+app.get('/paises/consultar', consultarPaises);
+
 app.get('/libros/consultar', consultarLibros);
 app.get('/autores/consultar', consultarAutores);
 
@@ -56,12 +58,27 @@ function registrarLibro(req, res){
     });
 };
 
+function registrarPais(req, res){
+    var pais = db.collection('paises');
+    var nuevoPais = {
+        nombre: req.body.nombre,
+        nacionalidad: new ObjectId(req.body.nacionalidad)
+    };
 
+    pais.insertOne(nuevoPais, function(err, resultado){
+        if (err) { return validarError(res, err, 'Ocurrió un error al registrar el pais') }
+        res.send({mensaje:'Pais registrado exitosamente', codigo: 2 });
+    });
+};
 
 function registrarAutor(req, res){
     var autores = db.collection('autores');
     var nuevoAutor = {
-        nombre: req.body.nombre
+        nombre: req.body.nombre ,
+        fecha_nacimiento: req.body.fecha_nacimiento ,
+        nacionalidad: new ObjectId(req.body.nacionalidad),
+        foto: req.body.foto,
+        biografia: req.body.biografia
     };
     autores.insertOne(nuevoAutor, function(err, resultado){
         if (err) { return validarError(res, err, 'Ocurrió un error al registrar el autor') }
@@ -80,6 +97,19 @@ function consultarLibros(req, res){
         if (err) { return validarError(res, err, 'Ocurrió un error al consultar los libros') }
         res.send(construirRespuestaDatos(data, 'Libros encontrados'));
 	});
+}
+
+
+function consultarPaises(req, res){
+    var paises = db.collection('paises');
+    var opciones = {
+        collation:{locale:'es'},
+        sort:{ 'nombre': 1}
+    };
+    paises.find({}, opciones).toArray(function(err, data){
+        if (err) { return validarError(res, err, 'Ocurrió un error al consultar los paises') }
+        res.send(construirRespuestaDatos(data, 'Paises Econtrados'));
+    });
 }
 
 
@@ -160,9 +190,7 @@ function construirRespuestaDatos(data, mensaje) {
     }
 }
 
-
-
-MongoClient.connect('mongodb://jsvanegas:123@ds225028.mlab.com:25028/tiendalibros', function(err, client){
+MongoClient.connect('mongodb://rsagudelo:8327rosmira@ds239648.mlab.com:39648/tiendalibros', function(err, client){
 	if (err) { return console.log(err); }
 	db = client.db('tiendalibros');
 	app.listen(5000);

@@ -2,37 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Catalogo de Libros</title>
-
+    <title>Tienda de Libros</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-</head>
+
+    <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+   </head>
 <body>
     <div class="container-fluid">
 
         <div class="container text-center mt-5 pb-2">
-            <h1 class="mt-4 mb-4 text-center">Tienda de Libros</h1>
+            <h1 class="mt-4 mb-4 text-center">Gestión de Autores</h1>
             <div class="container mb-2 text-center">
                 <a href="consultaLibros.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Libros</a> |
-                <a href="registroLibros.html" class="ml-3"><i class="fas fa-home"></i> Registrar Libros</a> |
+                <a href="gestionarLibros.html" class="ml-3"><i class="fas fa-home"></i> Registrar Libros</a> |
                 <a href="consultaAutores.html" class="mr-3"><i class="fas fa-address-book"></i> Consultar Autores</a> |
-                <a href="registrarAutores.html" class="ml-3"><i class="fas fa-home"></i> Registrar Autores</a>
+                <a href="gestionarAutores.html" class="ml-3"><i class="fas fa-home"></i> Registrar Autores</a>
             </div>
         </div>
 
+        <div id="formulario" class="container border-top pt-4">
+            <div class="row">
 
-        <div>
-            <input type="text" id="txtNombreAutor">
-            <button id="btnGuardarAutor">Guardar Autor</button>
+                <div class="form-group col-md-4">
+                    <label for="txtNombreAutor">Nombre del Autor:</label>
+                    <input type="text" class="form-control" id="txtNombreAutor" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="cmbNacionalidad">Nacionalidad:</label>
+                    <select id="cmbNacionalidad" class="form-control" required></select>
+                </div>
+
+                <div class='col-sm-4'>
+                    <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                    <input type="text" class="form-control" id="txtFechaNacimiento" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="txtFoto">Foto:</label>
+                    <input type="text" class="form-control" id="txtFoto" />
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="txtBiografia">Biografía:</label>
+                    <textarea id="txtBiografia" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-md-12 text-right">
+                    <button id="btnGuardarAutor" class="btn btn-success btn-enlinea"><i class="fas fa-save"></i> Guardar</button>
+                    <button id="btnLimpiar" class="btn btn-danger btn-enlinea"><i class="fas fa-times"></i> Limpiar</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <table id="tblAutores" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="thNombre">Nombre</th>
+                        <th id="thNacionalidad">Nacionalidad</th>
+                        <th id="thFecha_nacimiento">fecha de Nacimiento</th>
+                        <th id="thDetalle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
 
     </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <div class="modal fade" id="detalleAutorModal" tabindex="-1" role="dialog" aria-labelledby="detalleAutorModallLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle del Autor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="formularioMos" class="container border-top pt-4">
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="txtMosNombreAutor">Nombre del Autor:</label>
+                                <input type="text" class="form-control" id="txtMosNombreAutor" required>
+                            </div>
+
+                            <div class="form-group col-md-5">
+                                <label for="txtMosNacionalidad">Nacionalidad:</label>
+                                <input type="text" class="form-control" id="txtMosNacionalidad" required>
+                            </div>
+
+                            <div class='col-sm-5'>
+                                <label for="txtMosFechaNacimiento">Fecha de Nacimiento:</label>
+                                <input type="text" class="form-control" id="txtMosFechaNacimiento" />
+                            </div>
+
+                            <div class="form-group col-md-5">
+                                <label for="txtMosFoto">Foto:</label>
+                                <input type="text" class="form-control" id="txtMosFoto" />
+                            </div>
+
+                            <div class="form-group col-md-10">
+                                <label for="txtMosBiografia">Biografía:</label>
+                                <textarea id="txtMosBiografia" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/handlebars.min-v4.0.11.js"></script>
+
+    <script id="template-autores" type="text/x-handlebars-template">
+        {{#each autores}}
+            <tr>
+                <td headers="thNombre">{{this.nombre}}</td>
+                <td headers="thNacionalidad">{{this.nacionalidad}}</td>
+                <td headers="thFecha_nacimiento">{{this.fecha_nacimiento}}</td>
+                <td headers="thDetalle">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data_id = "{{this._id}}">
+                        Mostrar Detalles
+                    </button>
+                </td>
+            </tr>
+        {{/each}}
+
+    </script>
 
         <script>
+
             (function () {
 
                 $('#btnGuardarAutor').on('click', function () {
@@ -40,7 +154,11 @@
                         url:'http://localhost:5000/autores/registrar',
                         type:'POST' ,
                         data:{
-                            nombre:$('#txtNombreAutor').val()
+                            nombre:$('#txtNombreAutor').val(),
+                            nacionalidad:$('#cmbNacionalidad').val() ,
+                            fecha_nacimiento:$('#txtFechaNacimiento').val() ,
+                            foto:$('#txtFoto').val() ,
+                            biografia:$('#txtBiografia').val()
                         },
                         dataType:'json' ,
                         success:function (resultado) {
@@ -52,7 +170,9 @@
                     });
                 });
 
-                $.ajax({
+                $('#txtFechaNacimiento').datepicker();
+
+               /* $.ajax({
                     url:'http://localhost:5000/libros/consultar',
                     type:'GET',
                     dataType:'json',
@@ -62,20 +182,104 @@
                     error:function (err) {
                         console.error(err);
                     }
+                });*/
+
+                $.ajax({
+                    url:'http://localhost:5000/paises/consultar',
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                       // console.log(resultado);
+                       //console.log(resultado.data);
+                        var paises = resultado.data;
+                        $('#cmbNacionalidad').llenarCombo(paises, 'pais', '_id');
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
                 });
+
+                consultarAutores() ;
+
+            })();
+
+            function cargarAutores(autores){
+
+                var tblAutores = $('#tblAutores');
+
+                var tbody = tblAutores.find('tbody');
+
+                //Se busca el template y se obtiene el HTML como un String
+                var source   = document.getElementById("template-autores").innerHTML;
+
+                //renderFilas, es una función que reemplaza el texto en el template y retorna un string formateado
+                var renderFilas = Handlebars.compile(source);
+
+                tbody.empty();  // limpiar el contenido
+
+               console.log (autores) ;
+
+                if (!Array.isArray(autores)){  //Valida que el parametro usuarios sea un arreglo
+                    mostrarMensajeSinDatos();
+                    return false;
+                }
+                ///Render de las filas con Handlebars
+                tbody.append( renderFilas({autores:autores}) );
+                tbody.find('.btn').on('click', mostrardetalle) ;
+            }
+
+            function mostrardetalle () {
+                var id_autor = $(this).attr('data_id') ;
+                $.ajax({
+                    url:'http://localhost:5000/autor/' + id_autor ,
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log(resultado.data);
+                        mostrarDetalleAutor(resultado.data);
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+            }
+
+            function mostrarDetalleAutor (autor) {
+
+                var bodyModal = $('#detalleAutorModal') ;
+
+                bodyModal.find('#txtMosNombreAutor').val(autor.nombre);
+                bodyModal.find('#txtMosNacionalidad').val(autor.nacionalidad);
+                bodyModal.find('#txtMosFechaNacimiento').val(autor.fecha_nacimiento);
+                bodyModal.find('#txtMosFoto').val(autor.foto);
+                bodyModal.find('#txtMosBiografia').text(autor.biografia);
+
+                bodyModal.modal('show') ;
+            }
+
+
+            function consultarAutores(){
 
                 $.ajax({
                     url:'http://localhost:5000/autores/consultar',
                     type:'GET',
                     dataType:'json',
                     success:function(resultado){
-                        console.log('Autores: ', resultado);
+                        sessionStorage.setItem('autores', JSON.stringify(resultado.data));
+                        cargarAutores(resultado.data) ;
+                        //console.error(resultado);
                     },
                     error:function (err) {
                         console.error(err);
                     }
                 });
-            })();
+
+            }
+
+            function mostrarMensajeSinDatos(){
+                console.log('No hay registros');
+            }
+
 
         </script>
 
