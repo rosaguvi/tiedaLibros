@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
     <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
    </head>
 <body>
@@ -20,7 +19,40 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container row">
+            <!--
+            Buscador
+            -->
+            <div class="form-group col-md-2">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="txtNombreLibro">Nombre del Libro:</label>
+                <input type="text" class="form-control" id="txtNombreLibro" required>
+            </div>
+
+            <div class="form-group col-md-3">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="cmbAutor">Autor:</label>
+                <select id="cmbAutor" class="form-control" required></select>
+            </div>
+
+            <div class="form-group col-md-2">
+            </div>
+            <div class="form-group col-md-3 text-right">
+                <button id="btnBuscarLibro" class="btn btn-info btn-enlinea"><i class="fas fa-search"></i>Buscar</button>
+            </div>
+            <div class="form-group col-md-3">
+            </div>
+            <div class="form-group col-md-4 text-right">
+                <button id="btnBuscarAutor" class="btn btn-info btn-enlinea"><i class="fas fa-search"></i> Buscar</button>
+            </div>
+
+            <!--
+            Buscador
+            -->
 
         </div>
 
@@ -31,6 +63,190 @@
     <script src="js/bootstrap-datepicker.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/handlebars.min-v4.0.11.js"></script>
+
+    <script>
+
+        (function () {
+
+         /*   $('#btnLimpiar').on('click', limpiarFormulario);
+
+            $('#btnCerrar').on('click', cerrarFormulario);*/
+
+            $('#btnBuscarLibroLibro').on('click', function () {
+                $.ajax({
+                    url:'http://localhost:5000/libros/registrar',
+                    type:'POST' ,
+                    data:{
+                        nombre:$('#txtNombreLibro').val(),
+                        autor:$('#cmbAutor').val() ,
+                        precio:$('#txtPrecio').val() ,
+                        fecha_publicacion:$('#txtFechaPublicacion').val() ,
+                        portada:$('#txtPortada').val() ,
+                        editorial:$('#txtEditorial').val() ,
+                        prologo:$('#txtPrologo').val()
+                    },
+                    dataType:'json' ,
+                    success:function (resultado) {
+                        console.log(resultado);
+                        limpiarFormulario() ;
+                        cerrarFormulario();
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+            });
+
+            $('#btnBuscarAutor').on('click', function () {
+                $.ajax({
+                    url:'http://localhost:5000/libros/registrar',
+                    type:'POST' ,
+                    data:{
+                        nombre:$('#txtNombreLibro').val(),
+                        autor:$('#cmbAutor').val() ,
+                        precio:$('#txtPrecio').val() ,
+                        fecha_publicacion:$('#txtFechaPublicacion').val() ,
+                        portada:$('#txtPortada').val() ,
+                        editorial:$('#txtEditorial').val() ,
+                        prologo:$('#txtPrologo').val()
+                    },
+                    dataType:'json' ,
+                    success:function (resultado) {
+                        console.log(resultado);
+                        limpiarFormulario() ;
+                        cerrarFormulario();
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+            });
+
+            $('#txtFechaPublicacion').datepicker();
+
+            /* $.ajax({
+                 url:'http://localhost:5000/libros/consultar',
+                 type:'GET',
+                 dataType:'json',
+                 success:function(resultado){
+                     console.log(resultado);
+                 },
+                 error:function (err) {
+                     console.error(err);
+                 }
+             });*/
+
+            $.ajax({
+                url:'http://localhost:5000/autores/consultar',
+                type:'GET',
+                dataType:'json',
+                success:function(resultado){
+                    console.log(resultado);
+                    //console.log(resultado.data);
+                    var autores = resultado.data;
+                    $('#cmbAutor').llenarCombo(autores, 'nombre', '_id');
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+
+            consultarLibros() ;
+
+        })();
+
+        function cargarLibros(libros){
+
+            var tblLibros = $('#tblLibros');
+
+            var tbody = tblLibros.find('tbody');
+
+            //Se busca el template y se obtiene el HTML como un String
+            var source   = document.getElementById("template-libros").innerHTML;
+
+            //renderFilas, es una función que reemplaza el texto en el template y retorna un string formateado
+            var renderFilas = Handlebars.compile(source);
+
+            tbody.empty();  // limpiar el contenido
+
+            if (!Array.isArray(libros)){  //Valida que el parametro usuarios sea un arreglo
+                mostrarMensajeSinDatos();
+                return false;
+            }
+            ///Render de las filas con Handlebars
+            tbody.append( renderFilas({libros:libros}) );
+            tbody.find('.btn').on('click', mostrardetalle) ;
+        }
+
+        function mostrardetalle () {
+            var id_libro = $(this).attr('data_id') ;
+            $.ajax({
+                url:'http://localhost:5000/libro/' + id_libro ,
+                type:'GET',
+                dataType:'json',
+                success:function(resultado){
+                    console.log(resultado.data);
+                    mostrarDetalleLibro(resultado.data);
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+        }
+
+        function mostrarDetalleLibro (libro) {
+
+            var bodyModal = $('#detalleLibroModal') ;
+
+            bodyModal.find('#txtMosNombreLibro').val(libro.nombre);
+            bodyModal.find('#txtMosAutor').val(libro.autor.nombre);
+            bodyModal.find('#txtMosPrecio').val(libro.precio);
+            bodyModal.find('#txtMosFechaPublicacion').val(libro.fecha_publicacion);
+            bodyModal.find('#txtMosPortada').val(libro.portada);
+            bodyModal.find('#txtMosEditorial').val(libro.editorial);
+            bodyModal.find('#txtMosPrologo').text(libro.prologo);
+
+            bodyModal.modal('show') ;
+        }
+
+
+        function consultarLibros(){
+
+            $.ajax({
+                url:'http://localhost:5000/libros/consultar',
+                type:'GET',
+                dataType:'json',
+                success:function(resultado){
+                    cargarLibros(resultado.data) ;
+                    //console.error(resultado);
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+
+        }
+
+        function limpiarFormulario(){
+            var formulario = $('#GuardarLibroModal');
+            formulario.find('input[type="text"], textarea, input[type="email"]').val('');
+            formulario.find('select').val('-1');
+            formulario.find('.is-valid , .is-invalid').removeClass('is-invalid').removeClass('is-valid') ;
+        }
+
+        function cerrarFormulario(){
+            var bodyModalGuardar = $('#GuardarLibroModal') ;
+            bodyModalGuardar.modal('hide') ;
+            consultarLibros();
+        }
+
+        function mostrarMensajeSinDatos(){
+            console.log('No hay registros');
+        }
+
+    </script>
+
+
 
 
 </body>
