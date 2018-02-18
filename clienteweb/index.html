@@ -63,6 +63,8 @@
     <script src="js/bootstrap-datepicker.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/handlebars.min-v4.0.11.js"></script>
+    <script src="js/sweetalert2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
 
@@ -72,24 +74,24 @@
 
             $('#btnCerrar').on('click', cerrarFormulario);*/
 
-            $('#btnBuscarLibroLibro').on('click', function () {
+            $('#btnBuscarLibro').on('click', function () {
+                var nombre = $('#txtNombreLibro') ;
+                if (nombre.val().trim().length === 0){
+                    nombre.addClass('is-invalid').removeClass('is-valid');
+                    swal({
+                        title:'Error de validación',
+                        html: '<p class="text-left">Debe diligenciar el <b> Nombre del Libro</b>. <br/></p>',
+                        type: 'warning'
+                    });
+                    return;
+                }
                 $.ajax({
-                    url:'http://localhost:5000/libros/registrar',
-                    type:'POST' ,
-                    data:{
-                        nombre:$('#txtNombreLibro').val(),
-                        autor:$('#cmbAutor').val() ,
-                        precio:$('#txtPrecio').val() ,
-                        fecha_publicacion:$('#txtFechaPublicacion').val() ,
-                        portada:$('#txtPortada').val() ,
-                        editorial:$('#txtEditorial').val() ,
-                        prologo:$('#txtPrologo').val()
-                    },
-                    dataType:'json' ,
-                    success:function (resultado) {
-                        console.log(resultado);
-                        limpiarFormulario() ;
-                        cerrarFormulario();
+                    url:'http://localhost:5000/libros/buscar/' + nombre.val(),
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log(resultado.data);
+                        //mostrarDetalleAutor(resultado.data);
                     },
                     error:function (err) {
                         console.error(err);
@@ -98,23 +100,23 @@
             });
 
             $('#btnBuscarAutor').on('click', function () {
+                var autor = $('#cmbAutor') ;
+                if (autor.val() === '-1'){
+                    autor.addClass('is-invalid').removeClass('is-valid');
+                    swal({
+                        title:'Error de validación',
+                        html: '<p class="text-left">Debe Elegir <b> Un Autor</b>. <br/></p>',
+                        type: 'warning'
+                    });
+                    return;
+                }
                 $.ajax({
-                    url:'http://localhost:5000/libros/registrar',
-                    type:'POST' ,
-                    data:{
-                        nombre:$('#txtNombreLibro').val(),
-                        autor:$('#cmbAutor').val() ,
-                        precio:$('#txtPrecio').val() ,
-                        fecha_publicacion:$('#txtFechaPublicacion').val() ,
-                        portada:$('#txtPortada').val() ,
-                        editorial:$('#txtEditorial').val() ,
-                        prologo:$('#txtPrologo').val()
-                    },
-                    dataType:'json' ,
-                    success:function (resultado) {
-                        console.log(resultado);
-                        limpiarFormulario() ;
-                        cerrarFormulario();
+                    url:'http://localhost:5000/libros/autor/' + autor.val(),
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log(resultado.data);
+                        //mostrarDetalleAutor(resultado.data);
                     },
                     error:function (err) {
                         console.error(err);
@@ -151,48 +153,9 @@
                 }
             });
 
-            consultarLibros() ;
+            //consultarLibros() ;
 
         })();
-
-        function cargarLibros(libros){
-
-            var tblLibros = $('#tblLibros');
-
-            var tbody = tblLibros.find('tbody');
-
-            //Se busca el template y se obtiene el HTML como un String
-            var source   = document.getElementById("template-libros").innerHTML;
-
-            //renderFilas, es una función que reemplaza el texto en el template y retorna un string formateado
-            var renderFilas = Handlebars.compile(source);
-
-            tbody.empty();  // limpiar el contenido
-
-            if (!Array.isArray(libros)){  //Valida que el parametro usuarios sea un arreglo
-                mostrarMensajeSinDatos();
-                return false;
-            }
-            ///Render de las filas con Handlebars
-            tbody.append( renderFilas({libros:libros}) );
-            tbody.find('.btn').on('click', mostrardetalle) ;
-        }
-
-        function mostrardetalle () {
-            var id_libro = $(this).attr('data_id') ;
-            $.ajax({
-                url:'http://localhost:5000/libro/' + id_libro ,
-                type:'GET',
-                dataType:'json',
-                success:function(resultado){
-                    console.log(resultado.data);
-                    mostrarDetalleLibro(resultado.data);
-                },
-                error:function (err) {
-                    console.error(err);
-                }
-            });
-        }
 
         function mostrarDetalleLibro (libro) {
 
@@ -210,7 +173,7 @@
         }
 
 
-        function consultarLibros(){
+      /*  function consultarLibros(){
 
             $.ajax({
                 url:'http://localhost:5000/libros/consultar',
@@ -225,7 +188,7 @@
                 }
             });
 
-        }
+        }*/
 
         function limpiarFormulario(){
             var formulario = $('#GuardarLibroModal');

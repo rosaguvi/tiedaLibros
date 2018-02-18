@@ -64,7 +64,7 @@
 
                             <div class="form-group col-md-12">
                                 <label for="txtNombreLibro">Nombre del Libro:</label>
-                                <input type="text" class="form-control" id="txtNombreLibro" required>
+                                <input type="text" class="form-control" id="txtNombreLibro" required/>
                             </div>
 
                             <div class="form-group col-md-12">
@@ -73,23 +73,23 @@
                             </div>
 
                             <div class='col-sm-12'>
-                                <label for="txtFechaPublicacion">Fecha de Publicacion:</label>
-                                <input type="text" class="form-control" id="txtFechaPublicacion" />
+                                <label for="txtFechaPublicacion" >Fecha de Publicacion:</label>
+                                <input type="text" class="form-control" id="txtFechaPublicacion" required />
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="txtPrecio">Precio:</label>
-                                <input type="text" id="txtPrecio" class="form-control" required></select>
+                                <input type="text" id="txtPrecio" class="form-control" required/></select>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="txtPortada">Portada:</label>
-                                <input type="text" class="form-control" id="txtPortada" />
+                                <input type="text" class="form-control" id="txtPortada" required/>
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label for="txtEditorial">Editorial:</label>
-                                <input type="text" class="form-control" id="txtEditorial" />
+                                <input type="text" class="form-control" id="txtEditorial" required />
                             </div>
 
                             <div class="form-group col-md-12">
@@ -132,6 +132,10 @@
 
                     <div id="formularioMos" class="container border-top pt-4">
                         <div class="row">
+
+                            <div class="form-group col-md-12" id="image" >
+                            </div>
+
                             <div class="form-group col-md-5">
                                 <label for="txtMosNombreLibro">Nombre :</label>
                                 <input type="text" class="form-control" id="txtMosNombreLibro" required>
@@ -152,12 +156,7 @@
                                 <input type="text" class="form-control" id="txtMosFechaPublicacion" />
                             </div>
 
-                            <div class="form-group col-md-5">
-                                <label for="txtMosPortada">Portada:</label>
-                                <input type="text" class="form-control" id="txtMosPortada" />
-                            </div>
-
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-12">
                                 <label for="txtMosEditorial">Editorial:</label>
                                 <input type="text" class="form-control" id="txtMosEditorial" />
                             </div>
@@ -185,6 +184,8 @@
     <script src="js/bootstrap-datepicker.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/handlebars.min-v4.0.11.js"></script>
+    <script src="js/sweetalert2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script id="template-libros" type="text/x-handlebars-template">
         {{#each libros}}
@@ -211,43 +212,12 @@
             $('#btnCerrar').on('click', cerrarFormulario);
 
             $('#btnGuardarLibro').on('click', function () {
-                $.ajax({
-                    url:'http://localhost:5000/libros/registrar',
-                    type:'POST' ,
-                    data:{
-                        nombre:$('#txtNombreLibro').val(),
-                        autor:$('#cmbAutor').val() ,
-                        precio:$('#txtPrecio').val() ,
-                        fecha_publicacion:$('#txtFechaPublicacion').val() ,
-                        portada:$('#txtPortada').val() ,
-                        editorial:$('#txtEditorial').val() ,
-                        prologo:$('#txtPrologo').val()
-                    },
-                    dataType:'json' ,
-                    success:function (resultado) {
-                        console.log(resultado);
-                        limpiarFormulario() ;
-                        cerrarFormulario();
-                    },
-                    error:function (err) {
-                        console.error(err);
-                    }
-                });
+
+                validarFormulario( $('#formulario') );
+
             });
 
             $('#txtFechaPublicacion').datepicker();
-
-            /* $.ajax({
-                 url:'http://localhost:5000/libros/consultar',
-                 type:'GET',
-                 dataType:'json',
-                 success:function(resultado){
-                     console.log(resultado);
-                 },
-                 error:function (err) {
-                     console.error(err);
-                 }
-             });*/
 
             $.ajax({
                 url:'http://localhost:5000/autores/consultar',
@@ -315,10 +285,16 @@
             bodyModal.find('#txtMosAutor').val(libro.autor.nombre);
             bodyModal.find('#txtMosPrecio').val(libro.precio);
             bodyModal.find('#txtMosFechaPublicacion').val(libro.fecha_publicacion);
-            bodyModal.find('#txtMosPortada').val(libro.portada);
             bodyModal.find('#txtMosEditorial').val(libro.editorial);
             bodyModal.find('#txtMosPrologo').text(libro.prologo);
-
+            var conten_image =  bodyModal.find('#image') ;
+            conten_image.html('') ;
+            var image = new Image();
+            image.src = libro.portada;
+            image.width = '100' ;
+            image.height = '150' ;
+            conten_image.append(image);
+            bodyModal.modal('show') ;
             bodyModal.modal('show') ;
         }
 
@@ -355,6 +331,88 @@
 
         function mostrarMensajeSinDatos(){
             console.log('No hay registros');
+        }
+
+
+        function validarFormulario(contenedor){
+            var requeridos = contenedor.find('*[required]');
+            var mensaje = '';
+            for (var i = 0; i < requeridos.length; i++){
+                var elementoJQuery = $(requeridos[i]);
+                switch (elementoJQuery.prop('tagName')){
+                    case 'INPUT':
+                        mensaje += validarInput(elementoJQuery);
+                        break;
+                    case 'SELECT':
+                        mensaje += validarSelect(elementoJQuery);
+                        break;
+                }
+            }
+            if (mensaje.length > 0){
+                //console.error(mensaje);
+                swal({
+                    title:'Error de validación',
+                    html: '<p class="text-left">'+mensaje+'</p>',
+                    type: 'warning'
+                });
+                return;
+            }
+            guardarInformacion();
+            return;
+        }
+
+        function validarInput(elemento){
+            if (elemento.val().trim().length === 0){
+                elemento.addClass('is-invalid').removeClass('is-valid');
+                return 'El campo <b>'+obtenerLabel(elemento)+'</b> está vacío. <br/>';
+            }
+            if (elemento.attr('pattern')!==null){
+                if( ! new RegExp(elemento.attr('pattern')).test(elemento.val()) ){
+                    elemento.addClass('is-invalid').removeClass('is-valid');
+                    return 'El campo <b>'+obtenerLabel(elemento)+'</b> no cumple. <br/>';
+                }
+            }
+            elemento.removeClass('is-invalid').addClass('is-valid');
+            return '';
+        }
+
+        function validarSelect(elemento){
+            if (elemento.val() === '-1'){
+                elemento.addClass('is-invalid').removeClass('is-valid');
+                return 'Debe seleccionar una opción de '+obtenerLabel(elemento)+'<br/>';
+            }
+            elemento.removeClass('is-invalid').addClass('is-valid');
+            return '';
+        }
+
+        function guardarInformacion() {
+            $.ajax({
+                url:'http://localhost:5000/libros/registrar',
+                type:'POST' ,
+                data:{
+                    nombre:$('#txtNombreLibro').val(),
+                    autor:$('#cmbAutor').val() ,
+                    precio:$('#txtPrecio').val() ,
+                    fecha_publicacion:$('#txtFechaPublicacion').val() ,
+                    portada:$('#txtPortada').val() ,
+                    editorial:$('#txtEditorial').val() ,
+                    prologo:$('#txtPrologo').val()
+                },
+                dataType:'json' ,
+                success:function (resultado) {
+                    toastr.success('Se guardó la información correctamente', 'Registro Exitoso');
+                    limpiarFormulario() ;
+                    cerrarFormulario();
+                },
+                error:function (err) {
+                    console.error(err);
+                }
+            });
+        }
+
+        function obtenerLabel(elemento) {
+            var txtLabel = elemento.parent().find('label[for="'+elemento.attr('id')+'"]').text();
+            return txtLabel.substring(0, txtLabel.length-1);
         }
 
     </script>
