@@ -7,210 +7,162 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        .letra {
+            font-family: "Tahoma", "Geneva", sans-serif;
+            font-size: 12px;
+        }
+        .row-contenedor
+        {
+            margin-left: 1px;
+            margin-right: 1px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            border: solid 1px;
+            padding: 2px;
+            height: 300px;
+        }
+
+    </style>
+
+    <style>
+        .div-libro{
+            min-height: 300px;
+            margin-bottom: 15px;
+        }
+
+        .div-libro .card{
+            min-height: inherit;
+        }
+
+        .div-libro .card:hover{
+            background-color: #e3e3e3;
+        }
+    </style>
+
    </head>
 <body>
-    <div class="container-fluid">
-
-        <div class="container text-center mt-5 pb-2">
-            <h1 class="mt-4 mb-4 text-center">Tienda de Libros</h1>
-            <div class="container mb-2 text-center">
-                <a href="gestionarLibros.html" class="mr-3"><i class="far fa-address-book"></i> Gestionar Libros</a> |
-                <a href="gestionarAutores.html" class="ml-3"><i class="fas fa-user"></i> Gestionar Autores</a>
+    <div class="content-flow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Tienda de Libros</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vistas/pedido/pedido.html"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cogs"></i> Gestión
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="vistas/gestion/gestionarLibros.html"><i class="fas fa-book"></i> Gestión de Libros</a>
+                            <a class="dropdown-item" href="vistas/gestion/gestionarAutores.html"><i class="fas fa-user-circle"></i> Gestión de Autores</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
 
-        <div class="container row">
+        <h1 class="text-center mt-2 mb-2">Catálogo de Libros</h1>
+
+        <div id="formulario">
             <!--
             Buscador
-            -->
-            <div class="form-group col-md-2">
-            </div>
+             -->
+                <div class="row pl-5 pr-5 mt-2 mb-4">
 
-            <div class="form-group col-md-3">
-                <label for="txtNombreLibro">Nombre del Libro:</label>
-                <input type="text" class="form-control" id="txtNombreLibro" required>
-            </div>
+                    <div class="form-group col-md-1">
+                    </div>
 
-            <div class="form-group col-md-3">
-            </div>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nombre del Libro..."id="txtNombreLibro" required>
+                            <div class="input-group-append">
+                                <a class="input-group-text btn" href="#" id="btnBuscarLibro"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group col-md-4">
-                <label for="cmbAutor">Autor:</label>
-                <select id="cmbAutor" class="form-control" required></select>
-            </div>
+                    <div class="col-md-4">
+                        <select id="cmbAutor" class="form-control" aria-label="Buscar por Autor" required></select>
+                    </div>
 
-            <div class="form-group col-md-2">
-            </div>
-            <div class="form-group col-md-3 text-right">
-                <button id="btnBuscarLibro" class="btn btn-info btn-enlinea"><i class="fas fa-search"></i>Buscar</button>
-            </div>
-            <div class="form-group col-md-3">
-            </div>
-            <div class="form-group col-md-4 text-right">
-                <button id="btnBuscarAutor" class="btn btn-info btn-enlinea"><i class="fas fa-search"></i> Buscar</button>
-            </div>
+                    <div class="col-md-2">
+                        <div class="input-group-append">
+                            <a class="input-group-text btn" href="#" id="btnLimpiar">Limpiar Filtros</a>
+                        </div>
+                    </div>
 
-            <!--
-            Buscador
-            -->
+                </div>
+
+                <!--
+                 Termina Buscador
+                 -->
+
+                <div class="row pl-5 pr-5 mt-2" id="contenedor-libros">
+
+
+
+                </div>
 
         </div>
-
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/handlebars.min-v4.0.11.js"></script>
-    <script src="js/sweetalert2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script id="tpl-libro" type="text/x-handlebars-template">
+            {{#each libros}}
+            <div class="col-12 col-sm-6 col-md-4 div-libro">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center" >
+                                    <h5 class="card-title"><span class="titulo" > {{this.nombre}}  </span></h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 text-sm-center">
+                                <img src="{{this.portada}}" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                <p class="card-text"><b>{{this.autor.nombre}}</b></p>
+                                <p>{{elipsis this.prologo 200}}</p>
+                                <div class="align-bottom">
+                                    <a href="#" class="btn btn-success btn-agregar" data-id="{{this._id}}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-detalles" data-id="{{this._id}}">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <h2 class="text-center">No se encontraron resultados :'(</h2>
+                <p class="text-center">Por favor intenta con otro criterio de búsqueda.</p>
+            </div>
+            {{/each}}
+        </script>
 
-    <script>
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/handlebars.min-v4.0.11.js"></script>
+    <script src="js/app/plugins.js"></script>
+    <script src="js/app/app.global.js"></script>
+    <script src="js/app/app.rutas.js"></script>
+    <script src="js/app/app.dom.js"></script>
 
-        (function () {
-
-         /*   $('#btnLimpiar').on('click', limpiarFormulario);
-
-            $('#btnCerrar').on('click', cerrarFormulario);*/
-
-            $('#btnBuscarLibro').on('click', function () {
-                var nombre = $('#txtNombreLibro') ;
-                if (nombre.val().trim().length === 0){
-                    nombre.addClass('is-invalid').removeClass('is-valid');
-                    swal({
-                        title:'Error de validación',
-                        html: '<p class="text-left">Debe diligenciar el <b> Nombre del Libro</b>. <br/></p>',
-                        type: 'warning'
-                    });
-                    return;
-                }
-                $.ajax({
-                    url:'http://localhost:5000/libros/buscar/' + nombre.val(),
-                    type:'GET',
-                    dataType:'json',
-                    success:function(resultado){
-                        console.log(resultado.data);
-                        //mostrarDetalleAutor(resultado.data);
-                    },
-                    error:function (err) {
-                        console.error(err);
-                    }
-                });
-            });
-
-            $('#btnBuscarAutor').on('click', function () {
-                var autor = $('#cmbAutor') ;
-                if (autor.val() === '-1'){
-                    autor.addClass('is-invalid').removeClass('is-valid');
-                    swal({
-                        title:'Error de validación',
-                        html: '<p class="text-left">Debe Elegir <b> Un Autor</b>. <br/></p>',
-                        type: 'warning'
-                    });
-                    return;
-                }
-                $.ajax({
-                    url:'http://localhost:5000/libros/autor/' + autor.val(),
-                    type:'GET',
-                    dataType:'json',
-                    success:function(resultado){
-                        console.log(resultado.data);
-                        //mostrarDetalleAutor(resultado.data);
-                    },
-                    error:function (err) {
-                        console.error(err);
-                    }
-                });
-            });
-
-            $('#txtFechaPublicacion').datepicker();
-
-            /* $.ajax({
-                 url:'http://localhost:5000/libros/consultar',
-                 type:'GET',
-                 dataType:'json',
-                 success:function(resultado){
-                     console.log(resultado);
-                 },
-                 error:function (err) {
-                     console.error(err);
-                 }
-             });*/
-
-            $.ajax({
-                url:'http://localhost:5000/autores/consultar',
-                type:'GET',
-                dataType:'json',
-                success:function(resultado){
-                    console.log(resultado);
-                    //console.log(resultado.data);
-                    var autores = resultado.data;
-                    $('#cmbAutor').llenarCombo(autores, 'nombre', '_id');
-                },
-                error:function (err) {
-                    console.error(err);
-                }
-            });
-
-            //consultarLibros() ;
-
-        })();
-
-        function mostrarDetalleLibro (libro) {
-
-            var bodyModal = $('#detalleLibroModal') ;
-
-            bodyModal.find('#txtMosNombreLibro').val(libro.nombre);
-            bodyModal.find('#txtMosAutor').val(libro.autor.nombre);
-            bodyModal.find('#txtMosPrecio').val(libro.precio);
-            bodyModal.find('#txtMosFechaPublicacion').val(libro.fecha_publicacion);
-            bodyModal.find('#txtMosPortada').val(libro.portada);
-            bodyModal.find('#txtMosEditorial').val(libro.editorial);
-            bodyModal.find('#txtMosPrologo').text(libro.prologo);
-
-            bodyModal.modal('show') ;
-        }
-
-
-      /*  function consultarLibros(){
-
-            $.ajax({
-                url:'http://localhost:5000/libros/consultar',
-                type:'GET',
-                dataType:'json',
-                success:function(resultado){
-                    cargarLibros(resultado.data) ;
-                    //console.error(resultado);
-                },
-                error:function (err) {
-                    console.error(err);
-                }
-            });
-
-        }*/
-
-        function limpiarFormulario(){
-            var formulario = $('#GuardarLibroModal');
-            formulario.find('input[type="text"], textarea, input[type="email"]').val('');
-            formulario.find('select').val('-1');
-            formulario.find('.is-valid , .is-invalid').removeClass('is-invalid').removeClass('is-valid') ;
-        }
-
-        function cerrarFormulario(){
-            var bodyModalGuardar = $('#GuardarLibroModal') ;
-            bodyModalGuardar.modal('hide') ;
-            consultarLibros();
-        }
-
-        function mostrarMensajeSinDatos(){
-            console.log('No hay registros');
-        }
-
-    </script>
-
-
-
+    <script src="js/vistas/catalogo/catalogo.modelo.js"></script>
+    <script src="js/vistas/catalogo/catalogo.control.js"></script>
+    <script src="js/vistas/catalogo/catalogo.vista.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Libros</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="../../css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+
+        .titulos-libro {
+            font-family: "Tahoma", "Geneva", sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="container text-center mt-5 pb-2">
+        <h1 class="mt-4 mb-4 text-center"><span class="titulo-libro" > Gestionar Libros </span></h1>
+    </div>
+
+    <div class="container">
+        <div class="form-group col-md-12 text-right">
+            <button id="btnNuevoLibro" class="btn btn-success" data-toggle="modal" data-target="#GuardarLibroModal">
+                <i class="fas fa-plus-square"></i> Nuevo </button>
+        </div>
+    </div>
+
+    <div class ="row col-md-12" id="contenedor" >
+
+        <div id="div-plantilla" class="container-fluid" >
+            <div class="row" >
+
+                <div class="container col-md-4 text-right">
+                    <img id="imageLibro" src="" alt="" class="img-fluid" width="250">
+                </div>
+
+                <div class="container col-md-8" >
+
+                    <div class="datos col-md-12" >
+                        <p>
+                            <span class="titulos-libro"> Autor : </span>
+                            <span id="detalle-autor"> </span>
+                        </p>
+                    </div>
+
+                    <div class="datos col-md-12" >
+                        <p>
+                            <span class="titulos-libro"> Fecha de Publicacion : </span>
+                            <span id="detalle-fecha"> </span>
+                        </p>
+                    </div>
+
+                    <div class="datos col-md-12" >
+                        <p>
+                            <span class="titulos-libro"> Editorial : </span>
+                            <span id="detalle-editorial"> </span>
+                        </p>
+                    </div>
+
+                    <div class="datos col-md-12" >
+                        <p>
+                            <span class="titulos-libro"> Prologo : </span>
+                            <span id="detalle-prologo" class="text-justify"> </span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--
+ Fin de Listado de Libros
+-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../../js/lib/bootstrap.min.js"></script>
+<script src="../../js/lib/bootstrap-datepicker.min.js"></script>
+<script src="../../js/app/plugins.js"></script>
+<script src="../../js/lib/handlebars.min-v4.0.11.js"></script>
+<script src="../../js/lib/sweetalert2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+
+    (function () {
+
+        var id_libro = sessionStorage.getItem('libro') ;
+        console.log(id_libro) ;
+        consultarLibro(id_libro) ;
+
+    })();
+
+    function cargarLibro(libro){
+
+        var tarjeta = $('#div-plantilla');
+
+        var imagen = tarjeta.find('#imageLibro') ;
+        imagen.attr('src' ,libro.portada );
+        $('.titulo-libro').text(libro.nombre);
+
+        tarjeta.find('#detalle-autor').text(libro.autor.nombre ) ;
+        tarjeta.find('#detalle-fecha').text(libro.fecha_publicacion ) ;
+        tarjeta.find('#detalle-editorial').text(libro.editorial ) ;
+        tarjeta.find('#detalle-prologo').text(libro.prologo ) ;
+    }
+
+    function consultarLibro(id_libro){
+
+        $.ajax({
+            url:'http://localhost:5000/libro/' + id_libro ,
+            type:'GET',
+            dataType:'json',
+            success:function(resultado){
+                cargarLibro(resultado.data);
+            },
+            error:function (err) {
+                console.error(err);
+            }
+        });
+    }
+
+</script>
+
+
+</body>
+</html>

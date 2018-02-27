@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Libros</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="../../css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+   </head>
+<body>
+    <div class="content-flow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Tienda de Libros</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pedido/pedido.html"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cogs"></i> Gestión
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="gestionarLibros.html"><i class="fas fa-book"></i> Gestión de Libros</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Gestión de Autores</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1 class="text-center mt-2 mb-2">Gestión de Autores</h1>
+
+        <div class="container">
+            <div class="form-group col-md-12 text-right">
+                <button id="btnNuevoAutor" class="btn btn-success" data-toggle="modal" data-target="#GuardarAutorModal">
+                    <i class="fas fa-plus-square"></i> Nuevo </button>
+            </div>
+            <table id="tblAutores" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="thNombre">Nombre</th>
+                        <th id="thNacionalidad">Nacionalidad</th>
+                        <th id="thFecha_nacimiento">fecha de Nacimiento</th>
+                        <th id="thDetalle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+   <!--
+    Modal de Agregar Autor
+    -->
+    <div class="modal fade" id="GuardarAutorModal" tabindex="-1" role="dialog" aria-labelledby="GuardarAutorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GuardarAutorModalLabel">Nuevo del Autor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="formulario" class="container border-top pt-4">
+                        <div class="row">
+
+                            <div class="form-group col-md-12">
+                                <label for="txtNombreAutor">Nombre del Autor:</label>
+                                <input type="text" class="form-control" id="txtNombreAutor" required>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="cmbNacionalidad">Nacionalidad:</label>
+                                <select id="cmbNacionalidad" class="form-control" required></select>
+                            </div>
+
+                            <div class='col-sm-6'>
+                                <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                                <input type="text" class="form-control" id="txtFechaNacimiento" required>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="txtFoto">Foto:</label>
+                                <input type="text" class="form-control" id="txtFoto" required>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="txtBiografia">Biografía:</label>
+                                <textarea id="txtBiografia" class="form-control" required></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group col-md-12 text-right">
+                        <button id="btnGuardarAutor" class="btn btn-success btn-enlinea"><i class="fas fa-save"></i> Guardar</button>
+                        <button id="btnLimpiar" class="btn btn-danger btn-enlinea"><i class="fas fa-times"></i> Limpiar</button>
+                        <button type="button" class="btn btn-secondary" id="btnCerrar" >Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    Fin Modal de Agregar Autor
+    -->
+    <!--
+      Detalle del autor
+     -->
+    <div class="modal fade" id="detalleAutorModal" tabindex="-1" role="dialog" aria-labelledby="detalleAutorModallLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle del Autor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="formularioMos" class="container border-top pt-4">
+                        <div class="row">
+
+                            <div class="form-group col-md-4 text-center" id="image" >
+                                <img src="" alt="" id="imageAutor" class="img-fluid" width="150">
+                            </div>
+
+                            <div class="col-md-8">
+
+                                <div class="form-group col-md-12">
+                                    <label for="txtMosNombreAutor">Nombre del Autor:</label>
+                                    <input type="text" class="form-control" id="txtMosNombreAutor" required>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="txtMosNacionalidad">Nacionalidad:</label>
+                                    <input type="text" class="form-control" id="txtMosNacionalidad" required>
+                                </div>
+
+                                <div cclass="form-group col-md-12">
+                                    <label for="txtMosFechaNacimiento">Fecha de Nacimiento:</label>
+                                    <input type="text" class="form-control" id="txtMosFechaNacimiento" />
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="txtMosBiografia">Biografía:</label>
+                                    <textarea id="txtMosBiografia" class="form-control" ></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../js/lib/bootstrap.min.js"></script>
+    <script src="../../js/lib/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/app/plugins.js"></script>
+    <script src="../../js/lib/handlebars.min-v4.0.11.js"></script>
+    <script src="../../js/lib/sweetalert2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script id="template-autores" type="text/x-handlebars-template">
+        {{#each autores}}
+            <tr>
+                <td headers="thNombre">{{this.nombre}}</td>
+                <td headers="thNacionalidad">{{this.nacionalidad.pais}}</td>
+                <td headers="thFecha_nacimiento">{{this.fecha_nacimiento}}</td>
+                <td headers="thDetalle">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data_id = "{{this._id}}">
+                        Mostrar Detalles
+                    </button>
+                </td>
+            </tr>
+        {{/each}}
+
+    </script>
+
+        <script>
+
+            (function () {
+
+                $('#btnLimpiar').on('click', limpiarFormulario);
+
+                $('#btnCerrar').on('click', cerrarFormulario);
+
+                $('#btnGuardarAutor').on('click', function () {
+                    validarFormulario( $('#formulario') );
+                });
+
+                $('#txtFechaNacimiento').datepicker();
+
+                $.ajax({
+                    url:'http://localhost:5000/paises/consultar',
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                       // console.log(resultado);
+                       //console.log(resultado.data);
+                        var paises = resultado.data;
+                        $('#cmbNacionalidad').llenarCombo(paises, 'pais', '_id');
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+
+                consultarAutores() ;
+
+            })();
+
+            function cargarAutores(autores){
+
+                var tblAutores = $('#tblAutores');
+
+                var tbody = tblAutores.find('tbody');
+
+                //Se busca el template y se obtiene el HTML como un String
+                var source   = document.getElementById("template-autores").innerHTML;
+
+                //renderFilas, es una función que reemplaza el texto en el template y retorna un string formateado
+                var renderFilas = Handlebars.compile(source);
+
+                tbody.empty();  // limpiar el contenido
+
+                if (!Array.isArray(autores)){  //Valida que el parametro usuarios sea un arreglo
+                    mostrarMensajeSinDatos();
+                    return false;
+                }
+                ///Render de las filas con Handlebars
+                tbody.append( renderFilas({autores:autores}) );
+                tbody.find('.btn').on('click', mostrardetalle) ;
+            }
+
+            function mostrardetalle () {
+                var id_autor = $(this).attr('data_id') ;
+                $.ajax({
+                    url:'http://localhost:5000/autor/' + id_autor ,
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        console.log(resultado.data);
+                        mostrarDetalleAutor(resultado.data);
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+            }
+
+            function mostrarDetalleAutor (autor) {
+
+                var bodyModal = $('#detalleAutorModal') ;
+
+                bodyModal.find('#txtMosNombreAutor').val(autor.nombre);
+                bodyModal.find('#txtMosNacionalidad').val(autor.nacionalidad.pais);
+                bodyModal.find('#txtMosFechaNacimiento').val(autor.fecha_nacimiento);
+                bodyModal.find('#txtMosBiografia').text(autor.biografia);
+                bodyModal.find('#imageAutor').attr('src' , autor.foto );
+
+                bodyModal.modal('show') ;
+            }
+
+
+            function consultarAutores(){
+
+                $.ajax({
+                    url:'http://localhost:5000/autores/consultar',
+                    type:'GET',
+                    dataType:'json',
+                    success:function(resultado){
+                        cargarAutores(resultado.data) ;
+                        //console.error(resultado);
+                    },
+                    error:function (err) {
+                        console.error(err);
+                    }
+                });
+
+            }
+
+            function limpiarFormulario(){
+                var formulario = $('#GuardarAutorModal');
+                formulario.find('input[type="text"], textarea, input[type="email"]').val('');
+                formulario.find('select').val('-1');
+                formulario.find('.is-valid , .is-invalid').removeClass('is-invalid').removeClass('is-valid') ;
+            }
+
+            function cerrarFormulario(){
+                var bodyModalGuardar = $('#GuardarAutorModal') ;
+                bodyModalGuardar.modal('hide') ;
+                consultarAutores();
+            }
+
+            function mostrarMensajeSinDatos(){
+                console.log('No hay registros');
+            }
+
+            function validarFormulario(contenedor){
+                var requeridos = contenedor.find('*[required]');
+                var mensaje = '';
+                for (var i = 0; i < requeridos.length; i++){
+                    var elementoJQuery = $(requeridos[i]);
+                    switch (elementoJQuery.prop('tagName')){
+                        case 'INPUT':
+                            mensaje += validarInput(elementoJQuery);
+                            break;
+                        case 'SELECT':
+                            mensaje += validarSelect(elementoJQuery);
+                            break;
+                    }
+                }
+                if (mensaje.length > 0){
+                    //console.error(mensaje);
+                    swal({
+                        title:'Error de validación',
+                        html: '<p class="text-left">'+mensaje+'</p>',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                guardarInformacion();
+                return;
+            }
+
+            function validarInput(elemento){
+                if (elemento.val().trim().length === 0){
+                    elemento.addClass('is-invalid').removeClass('is-valid');
+                    return 'El campo <b>'+obtenerLabel(elemento)+'</b> está vacío. <br/>';
+                }
+                if (elemento.attr('pattern')!==null){
+                    if( ! new RegExp(elemento.attr('pattern')).test(elemento.val()) ){
+                        elemento.addClass('is-invalid').removeClass('is-valid');
+                        return 'El campo <b>'+obtenerLabel(elemento)+'</b> no cumple. <br/>';
+                    }
+                }
+                elemento.removeClass('is-invalid').addClass('is-valid');
+                return '';
+            }
+
+            function validarSelect(elemento){
+                if (elemento.val() === '-1'){
+                    elemento.addClass('is-invalid').removeClass('is-valid');
+                    return 'Debe seleccionar una opción de '+obtenerLabel(elemento)+'<br/>';
+                }
+                elemento.removeClass('is-invalid').addClass('is-valid');
+                return '';
+            }
+
+            function guardarInformacion() {
+                  $.ajax({
+                      url:'http://localhost:5000/autores/registrar',
+                      type:'POST' ,
+                      data:{
+                          nombre:$('#txtNombreAutor').val(),
+                          nacionalidad:$('#cmbNacionalidad').val() ,
+                          fecha_nacimiento:$('#txtFechaNacimiento').val() ,
+                          foto:$('#txtFoto').val() ,
+                          biografia:$('#txtBiografia').val()
+                      },
+                      dataType:'json' ,
+                      success:function (resultado) {
+                          //console.log(resultado);
+                          toastr.success('Se guardó la información correctamente', 'Registro Exitoso');
+                          limpiarFormulario() ;
+                          cerrarFormulario();
+
+                      },
+                      error:function (err) {
+                          console.error(err);
+                      }
+                  });
+            }
+
+            function obtenerLabel(elemento) {
+                var txtLabel = elemento.parent().find('label[for="'+elemento.attr('id')+'"]').text();
+                return txtLabel.substring(0, txtLabel.length-1);
+            }
+
+        </script>
+
+</body>
+</html>
