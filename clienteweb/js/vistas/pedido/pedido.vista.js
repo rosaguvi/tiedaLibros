@@ -19,17 +19,24 @@ var pedidoVista = {
         vista.contenedorPedido = tblPedido.find('tbody');
         vista.btnconfirmar = $('#btnConfirmarPedido');
         vista.btnconpagar = $('#btnPagar');
+        vista.btncerrar = $('#btnCerrar');
 	},
 
 	asignarEventos:function(){
         vista.btnconpagar.on('click', vista.realizarPago);
+        vista.btncerrar.on('click', vista.cerrarFormulario);
 	},
+
+    cerrarFormulario: function (){
+        var bodyModalConfirmar = $('#ConfirmarPedidoModal') ;
+        bodyModalConfirmar.modal('hide') ;
+    },
 
     realizarPago:function(){
         if (sessionStorage.getItem('carrito'))
         {
             var carrito = [] ;
-            var libro = [] ;
+           var libro = new Object();
             var pedidoPago   = [] ;
             var cantidad = 0 ;
             var subtotal = 0 ;
@@ -46,25 +53,23 @@ var pedidoVista = {
                     subtotal = subtotal +carrito[j].subTotal ;
                     impuesto = impuesto + carrito[j].impuesto  ;
                     total = total + carrito[j].total_precio  ;
-                    pedidoPago.push(carrito[j]);
                     contador = contador +  1 ;
+                    pedidoPago.push(carrito[j]);
                 }
             }
             if (contador > 0 )
             {
-                libro = carrito[0] ;
                 libro.nombre = 'Total Compra' ;
                 libro.cantidad = cantidad ;
                 libro.subTotal = subtotal ;
                 libro.impuesto = impuesto ;
                 libro.total_precio =  total ;
-                console.log(libro) ;
                 pedidoPago.push(libro);
                 sessionStorage.setItem('pedidoPago', JSON.stringify(pedidoPago));
+                sessionStorage.removeItem('carrito') ;
+                __app.redireccionar(__app.rutas.VISTAS.RESUMEN_COMPRA);
             }
         }
-        sessionStorage.removeItem('carrito') ;
-        __app.redireccionar(__app.rutas.VISTAS.RESUMEN_COMPRA);
 
     },
 
@@ -87,15 +92,19 @@ var pedidoVista = {
         var index = btn.attr('data-id');
         carrito = JSON.parse( sessionStorage.getItem('carrito') );
         var cant = btn.parent().parent().find('input').val() ;
-
-        carrito[index].cantidad = cant ;
-        carrito[index].subTotal = carrito[index].precio * carrito[index].cantidad ;
-        carrito[index].impuesto = carrito[index].subTotal * 0.19 ;
-        carrito[index].total_precio = carrito[index].subTotal + carrito[index].impuesto  ;
+        if  (cant == 0 )
+        {
+            carrito.splice(index, 1) ;
+        }
+        else
+        {
+            carrito[index].cantidad = cant ;
+            carrito[index].subTotal = carrito[index].precio * carrito[index].cantidad ;
+            carrito[index].impuesto = carrito[index].subTotal * 0.19 ;
+            carrito[index].total_precio = carrito[index].subTotal + carrito[index].impuesto  ;
+        }
         sessionStorage.setItem('carrito', JSON.stringify(carrito));
-
         location.reload();
-
     },
 
     obtenerTemplatePedido:function(){
