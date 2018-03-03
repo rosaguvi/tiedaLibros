@@ -88,14 +88,18 @@ var catalogoVista = {
                         if(carrito[j]._id == idLibro)
                         {
                             carrito[j].cantidad = carrito[j].cantidad + 1 ;
-                            carrito[j].total_precio = carrito[j].total_precio + libro.precio ;
+                            carrito[j].subTotal = carrito[j].subTotal + libro.precio ;
+                            carrito[j].impuesto = carrito[j].subTotal * 0.19 ;
+                            carrito[j].total_precio = carrito[j].subTotal + carrito[j].impuesto  ;
                             contador = 1 ;
                         }
                     }
                 }
                 if (contador == 0 ) {
                     libro.cantidad =  1  ;
-                    libro.total_precio= libro.precio ;
+                    libro.subTotal = libro.precio ;
+                    libro.impuesto = libro.subTotal * 0.19 ;
+                    libro.total_precio = libro.subTotal + libro.impuesto  ;
                     carrito.push(libro);
                 }
                 sessionStorage.setItem('carrito', JSON.stringify(carrito));

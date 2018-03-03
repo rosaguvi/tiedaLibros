@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4e269c3a-c38d-4a09-ba6b-df2efcbc09a4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/clienteweb/gestionarAutores.html" afterPath="$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
-      <change beforePath="$PROJECT_DIR$/clienteweb/gestionarLibros.html" afterPath="$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
-      <change beforePath="$PROJECT_DIR$/clienteweb/index.html" afterPath="$PROJECT_DIR$/clienteweb/index.html" />
+      <change beforePath="$PROJECT_DIR$/clienteweb/js/app/app.rutas.js" afterPath="$PROJECT_DIR$/clienteweb/js/app/app.rutas.js" />
+      <change beforePath="$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js" afterPath="$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js" />
+      <change beforePath="$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js" afterPath="$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js" />
+      <change beforePath="$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html" afterPath="$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,47 +20,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gestionarAutores.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="752">
-              <caret line="341" column="45" lean-forward="true" selection-start-line="341" selection-start-column="16" selection-end-line="341" selection-end-column="45" />
-              <folding>
-                <element signature="e#2256#2263#1" expanded="true" />
-                <element signature="e#5133#5140#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="98" column="19" lean-forward="true" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+            <state relative-caret-position="1105">
+              <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gestionarLibros.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
+      <file leaf-file-name="pedido.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="286" column="83" lean-forward="false" selection-start-line="286" selection-start-column="83" selection-end-line="286" selection-end-column="83" />
-              <folding>
-                <element signature="e#2324#2331#1" expanded="true" />
-                <element signature="e#5741#5748#1" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="38" column="10" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="38" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
+      <file leaf-file-name="detalleLibro.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/vistas/libros/detalleLibro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="22" />
+            <state relative-caret-position="204">
+              <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="catalogo.vista.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1615">
+              <caret line="95" column="21" lean-forward="false" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gestionarAutores.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/vistas/gestion/gestionarAutores.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1309">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pedido.vista.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.rutas.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clienteweb/js/app/app.rutas.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -86,6 +111,10 @@
         <option value="$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
         <option value="$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
         <option value="$PROJECT_DIR$/clienteweb/index.html" />
+        <option value="$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js" />
+        <option value="$PROJECT_DIR$/clienteweb/js/app/app.rutas.js" />
+        <option value="$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js" />
+        <option value="$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html" />
       </list>
     </option>
   </component>
@@ -98,7 +127,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/tiendalibros/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -119,29 +148,80 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="TiendaLibros" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TiendaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TiendaLibros" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TiendaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
               <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TiendaLibros" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TiendaLibros" type="462c0819:PsiDirectoryNode" />
-              <item name="tiendalibros" type="462c0819:PsiDirectoryNode" />
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="catalogo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="pedido" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="gestion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="libros" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tiedaLibros" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tiedaLibros" type="462c0819:PsiDirectoryNode" />
+              <item name="clienteweb" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="pedido" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -152,11 +232,11 @@
     <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file://C:/xampp/htdocs/TiendaLibros/tiendalibros/app.js" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\TiendaLibros\clienteweb" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\TiendaLibros\clienteweb\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TiendaLibros\clienteweb" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -187,17 +267,20 @@
       <workItem from="1518877664349" duration="4460000" />
       <workItem from="1518883859873" duration="23247000" />
       <workItem from="1518914959546" duration="11162000" />
+      <workItem from="1519745130505" duration="1251000" />
+      <workItem from="1519954867092" duration="8957000" />
+      <workItem from="1520103294431" duration="871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38869000" />
+    <option name="totallyTimeSpent" value="49948000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23645681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -212,7 +295,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -227,33 +310,90 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
+    <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="78" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="8" selection-end-column="78" />
-          <folding>
-            <element signature="e#2256#2263#1" expanded="true" />
-            <element signature="e#5133#5140#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="1105">
+          <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
+    <entry file="file://$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3468">
-          <caret line="204" column="2" lean-forward="true" selection-start-line="204" selection-start-column="2" selection-end-line="359" selection-end-column="13" />
-          <folding>
-            <element signature="e#2324#2331#1" expanded="true" />
-            <element signature="e#5741#5748#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="1785">
+          <caret line="105" column="21" lean-forward="true" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/vistas/gestion/gestionarAutores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/app/app.rutas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="26" lean-forward="false" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
+    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -265,33 +405,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2256#2263#1" expanded="true" />
-            <element signature="e#5133#5140#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#2324#2331#1" expanded="true" />
-            <element signature="e#5741#5748#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
     <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2941">
           <caret line="173" column="76" lean-forward="false" selection-start-line="173" selection-start-column="71" selection-end-line="173" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -302,48 +421,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/js/handlebars.min-v4.0.11.js">
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/handlebars.min-v4.0.11.js" />
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html" />
+    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html" />
+    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="680">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/vistas/gestion/gestionarAutores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarLibros.html">
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/catalogo/catalogo.vista.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="286" column="83" lean-forward="false" selection-start-line="286" selection-start-column="83" selection-end-line="286" selection-end-column="83" />
-          <folding>
-            <element signature="e#2324#2331#1" expanded="true" />
-            <element signature="e#5741#5748#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clienteweb/gestionarAutores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="341" column="45" lean-forward="true" selection-start-line="341" selection-start-column="16" selection-end-line="341" selection-end-column="45" />
-          <folding>
-            <element signature="e#2256#2263#1" expanded="true" />
-            <element signature="e#5133#5140#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tiendalibros/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="22" />
+        <state relative-caret-position="1615">
+          <caret line="95" column="21" lean-forward="false" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clienteweb/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="98" column="19" lean-forward="true" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+        <state relative-caret-position="1105">
+          <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/app/app.rutas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/js/vistas/pedido/pedido.vista.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/vistas/libros/detalleLibro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clienteweb/vistas/pedido/pedido.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="38" selection-end-column="10" />
           <folding />
         </state>
       </provider>

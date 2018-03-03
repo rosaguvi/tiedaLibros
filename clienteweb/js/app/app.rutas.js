@@ -26,8 +26,8 @@ __app.rutas = {
         GESTION_LIBROS: {url: 'vistas/gestion/libros.html'},
         GESTION_AUTORES: {url: 'vistas/gestion/autores.html'},
         DETALLES_LIBRO: {url: 'vistas/libros/detalleLibro.html' ,target:'_blank'},
-        CARRITO_COMPRAS: {url: 'vistas/compras/pedido.html'},
-        RESUMEN_COMPRA: {url: 'vistas/compras/resumen.html'},
+        CARRITO_COMPRAS: {url: 'vistas/pedido/pedido.html'},
+        RESUMEN_COMPRA: {url: 'vistas/pedido/resumen.html'},
 
 
     }

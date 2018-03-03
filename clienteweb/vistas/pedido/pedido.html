@@ -42,22 +42,13 @@
 
     <div id="formulario">
 
-        <div class="row pl-5 pr-5 mt-2" id="contenedor-pedido">
-
-
-
-        </div>
-
-    </div>
-
-        <!--
         <div class="container">
-            <table id="tblPedido" class="table table-striped">
+            <table id="tblPedidos" class="table table-striped">
                 <thead>
                 <tr>
                     <th id="thNombre">Nombre</th>
-                    <th id="thPrecio">Precio</th>
                     <th id="thCantidad">Cantidad</th>
+                    <th id="thPrecio">Precio</th>
                     <th id="thSubTotal">Sub Total</th>
                     <th id="thImpuesto">Impuesto</th>
                     <th id="thTotal">Total</th>
@@ -65,40 +56,33 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
             </table>
-        </div>-->
+        </div>
+
+    </div>
 
     </div>
 
     <script id="tpl-pedido" type="text/x-handlebars-template">
+
         {{#each libros}}
-        <div class="col-12 col-sm-6 col-md-4 div-libro">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 text-center" >
-                            <h5 class="card-title"><span class="titulo" > {{this.nombre}}  </span></h5>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 text-sm-center">
-                            <img src="{{this.portada}}" alt="" class="img-fluid">
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                            <p class="card-text"><b>{{this.autor.nombre}}</b></p>
-                            <p>{{elipsis this.prologo 200}}</p>
-                            <div class="align-bottom">
-                                <a href="#" class="btn btn-success btn-agregar" data-id="{{this._id}}">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                                <a href="#" class="btn btn-primary btn-detalles" data-id="{{this._id}}">
-                                    <i class="fas fa-plus-circle"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <tr>
+                <td headers="thNombre">{{this.nombre}}</td>
+                <td headers="thCantidad">
+                    <input type="text" class="form-control" value = "{{this.cantidad}}" id="txtCantidad" required>
+                </td>
+                <td headers="thPrecio">{{this.precio}}</td>
+                <td headers="thSubTotal">{{this.subTotal}}</td>
+                <td headers="thImpuesto">{{this.impuesto}}</td>
+                <td headers="thTotal">{{this.total_precio}}</td>
+                <td headers="thDetalle">
+                    <button type="button" class="btn btn-primary btn-act" data-id = "{{@index}}" >
+                        Actualizar Datos
+                    </button>
+                </td>
+            </tr>
         {{else}}
         <div class="col-12">
             <h2 class="text-center">No se encontraron resultados :'(</h2>
@@ -107,7 +91,6 @@
         {{/each}}
 
     </script>
-
 
     <script src="../../js/lib/jquery-3.3.1.min.js"></script>
     <script src="../../js/lib/bootstrap.min.js"></script>
