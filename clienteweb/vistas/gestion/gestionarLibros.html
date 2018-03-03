@@ -251,7 +251,7 @@
                     console.log(resultado);
                     //console.log(resultado.data);
                     var autores = resultado.data;
-                    $('#cmbAutor').llenarCombo(autores, 'nombre', '_id');
+                    $('#cmbAutor').llenarCombo(autores, '_id', 'nombre');
                 },
                 error:function (err) {
                     console.error(err);

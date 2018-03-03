@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Libros</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="../../css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="content-flow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Tienda de Libros</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cogs"></i> Gestión
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../gestion/gestionarLibros.html"><i class="fas fa-book"></i> Gestión de Libros</a>
+                        <a class="dropdown-item" href="../gestion/gestionarAutores.html"><i class="fas fa-user-circle"></i> Gestión de Autores</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="text-center mt-2 mb-2">Resumen de Pago</h1>
+
+    <div id="formulario">
+
+        <div class="container">
+            <table id="tblCompras" class="table table-striped">
+                <thead>
+                <tr>
+                    <th id="thNombre">Nombre</th>
+                    <th id="thCantidad">Cantidad</th>
+                    <th id="thPrecio">Precio</th>
+                    <th id="thSubTotal">Sub Total</th>
+                    <th id="thImpuesto">Impuesto</th>
+                    <th id="thTotal">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script id="tpl-compra" type="text/x-handlebars-template">
+
+    {{#each libros}}
+    <tr>
+        <td headers="thNombre">{{this.nombre}}</td>
+        <td headers="thCantidad">{{this.cantidad}}</td>
+        <td headers="thPrecio">{{this.precio}}</td>
+        <td headers="thSubTotal">{{this.subTotal}}</td>
+        <td headers="thImpuesto">{{this.impuesto}}</td>
+        <td headers="thTotal">{{this.total_precio}}</td>
+    </tr>
+    {{else}}
+    <div class="col-12">
+        <h2 class="text-center"> Ocurrio algun Error en el proceso de Compra :'(</h2>
+        <p class="text-center">Por favor contacte al adinistrador.</p>
+    </div>
+    {{/each}}
+
+</script>
+
+<script src="../../js/lib/jquery-3.3.1.min.js"></script>
+<script src="../../js/lib/bootstrap.min.js"></script>
+<script src="../../js/lib/handlebars.min-v4.0.11.js"></script>
+<script src="../../js/app/plugins.js"></script>
+<script src="../../js/app/app.global.js"></script>
+<script src="../../js/app/app.rutas.js"></script>
+<script src="../../js/app/app.dom.js"></script>
+
+<script src="../../js/vistas/pedido/compra.modelo.js"></script>
+<script src="../../js/vistas/pedido/compra.control.js"></script>
+<script src="../../js/vistas/pedido/compra.vista.js"></script>
+
+</body>
+</html>

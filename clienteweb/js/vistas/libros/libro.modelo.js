@@ -1,0 +1,4 @@
+
+var libroModelo = {
+    libros:[]
+};

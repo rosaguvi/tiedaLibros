@@ -43,6 +43,10 @@
     <div id="formulario">
 
         <div class="container">
+            <div class="form-group col-md-12 text-right">
+                <button id="btnConfirmarPedido" class="btn btn-success" data-toggle="modal" data-target="#ConfirmarPedidoModal">
+                    <i class="fas fa-badge-check"></i> Confirmar Compra </button>
+            </div>
             <table id="tblPedidos" class="table table-striped">
                 <thead>
                 <tr>
@@ -65,7 +69,47 @@
 
     </div>
 
-    <script id="tpl-pedido" type="text/x-handlebars-template">
+<!--
+Modal de Confirmar Pedido
+-->
+<div class="modal fade" id="ConfirmarPedidoModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmarPedidoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ConfirmarPedidoModalLabel">Confirmar Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="formulario_con" class="container border-top pt-4">
+                    <div class="row">
+
+                        <div class="form-group col-md-12">
+                            <p> Esta seguro de Confirmar compra... </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group col-md-12 text-right">
+                    <button id="btnPagar" class="btn btn-success btn-enlinea">Pagar</button>
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" >Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+Fin Modal de Confirmar Pedido
+-->
+
+
+<script id="tpl-pedido" type="text/x-handlebars-template">
 
         {{#each libros}}
             <tr>
@@ -85,8 +129,8 @@
             </tr>
         {{else}}
         <div class="col-12">
-            <h2 class="text-center">No se encontraron resultados :'(</h2>
-            <p class="text-center">Por favor intenta con otro criterio de búsqueda.</p>
+            <h2 class="text-center">!No se ha seleccionado ningun Libro!</h2>
+            <p class="text-center">Por favor diríjase al catálogo...</p>
         </div>
         {{/each}}
 

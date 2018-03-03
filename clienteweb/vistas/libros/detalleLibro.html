@@ -22,20 +22,34 @@
 </head>
 <body>
 <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Tienda de Libros</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Catálogo</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container text-center mt-5 pb-2">
-        <h1 class="mt-4 mb-4 text-center"><span class="titulo-libro" > Gestionar Libros </span></h1>
+
     </div>
 
     <div class="container">
         <div class="form-group col-md-12 text-right">
-            <button id="btnNuevoLibro" class="btn btn-success" data-toggle="modal" data-target="#GuardarLibroModal">
-                <i class="fas fa-plus-square"></i> Nuevo </button>
+            <a href="#" class="btn btn-success btn-agregar" id="btnAgregar" >
+                <i class="fas fa-shopping-cart"></i>
+            </a>
         </div>
     </div>
 
     <div class ="row col-md-12" id="contenedor" >
 
-        <div id="div-plantilla" class="container-fluid" >
+        <div id="formulario" class="container-fluid" >
             <div class="row" >
 
                 <div class="container col-md-4 text-right">
@@ -81,58 +95,18 @@
 </div>
 
 
-<!--
- Fin de Listado de Libros
--->
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../../js/lib/jquery-3.3.1.min.js"></script>
 <script src="../../js/lib/bootstrap.min.js"></script>
-<script src="../../js/lib/bootstrap-datepicker.min.js"></script>
-<script src="../../js/app/plugins.js"></script>
 <script src="../../js/lib/handlebars.min-v4.0.11.js"></script>
-<script src="../../js/lib/sweetalert2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="../../js/app/plugins.js"></script>
+<script src="../../js/app/app.global.js"></script>
+<script src="../../js/app/app.rutas.js"></script>
+<script src="../../js/app/app.dom.js"></script>
 
-<script>
-
-    (function () {
-
-        var id_libro = sessionStorage.getItem('libro') ;
-        console.log(id_libro) ;
-        consultarLibro(id_libro) ;
-
-    })();
-
-    function cargarLibro(libro){
-
-        var tarjeta = $('#div-plantilla');
-
-        var imagen = tarjeta.find('#imageLibro') ;
-        imagen.attr('src' ,libro.portada );
-        $('.titulo-libro').text(libro.nombre);
-
-        tarjeta.find('#detalle-autor').text(libro.autor.nombre ) ;
-        tarjeta.find('#detalle-fecha').text(libro.fecha_publicacion ) ;
-        tarjeta.find('#detalle-editorial').text(libro.editorial ) ;
-        tarjeta.find('#detalle-prologo').text(libro.prologo ) ;
-    }
-
-    function consultarLibro(id_libro){
-
-        $.ajax({
-            url:'http://localhost:5000/libro/' + id_libro ,
-            type:'GET',
-            dataType:'json',
-            success:function(resultado){
-                cargarLibro(resultado.data);
-            },
-            error:function (err) {
-                console.error(err);
-            }
-        });
-    }
-
-</script>
+<script src="../../js/vistas/libros/libro.modelo.js"></script>
+<script src="../../js/vistas/libros/libro.control.js"></script>
+<script src="../../js/vistas/libros/libro.vista.js"></script>
 
 
 </body>

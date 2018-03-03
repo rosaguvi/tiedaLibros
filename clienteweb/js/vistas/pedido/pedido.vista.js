@@ -16,22 +16,67 @@ var pedidoVista = {
 
 	referenciarControles:function(){
         var tblPedido = $('#tblPedidos');
-        vista.contenedorPedido = tblPedido.find('tbody'); ;
+        vista.contenedorPedido = tblPedido.find('tbody');
+        vista.btnconfirmar = $('#btnConfirmarPedido');
+        vista.btnconpagar = $('#btnPagar');
 	},
 
 	asignarEventos:function(){
-
+        vista.btnconpagar.on('click', vista.realizarPago);
 	},
+
+    realizarPago:function(){
+        if (sessionStorage.getItem('carrito'))
+        {
+            var carrito = [] ;
+            var libro = [] ;
+            var pedidoPago   = [] ;
+            var cantidad = 0 ;
+            var subtotal = 0 ;
+            var impuesto = 0 ;
+            var total = 0 ;
+            var contador = 0 ;
+            carrito = JSON.parse( sessionStorage.getItem('carrito') );
+            for (var j = 0 ; j< carrito.length ; j ++)
+            {
+                carrito[j];
+                if(carrito[j].cantidad > 0 )
+                {
+                    cantidad = cantidad + carrito[j].cantidad ;
+                    subtotal = subtotal +carrito[j].subTotal ;
+                    impuesto = impuesto + carrito[j].impuesto  ;
+                    total = total + carrito[j].total_precio  ;
+                    pedidoPago.push(carrito[j]);
+                    contador = contador +  1 ;
+                }
+            }
+            if (contador > 0 )
+            {
+                libro = carrito[0] ;
+                libro.nombre = 'Total Compra' ;
+                libro.cantidad = cantidad ;
+                libro.subTotal = subtotal ;
+                libro.impuesto = impuesto ;
+                libro.total_precio =  total ;
+                console.log(libro) ;
+                pedidoPago.push(libro);
+                sessionStorage.setItem('pedidoPago', JSON.stringify(pedidoPago));
+            }
+        }
+        sessionStorage.removeItem('carrito') ;
+        __app.redireccionar(__app.rutas.VISTAS.RESUMEN_COMPRA);
+
+    },
 
     cargarPedido:function(){
 
         var carrito = JSON.parse( sessionStorage.getItem('carrito'));
-        console.log(carrito) ;
         vista.contenedorPedido.empty();
         var items = $(vista.renderTemplatePedido({libros:carrito}));
         vista.contenedorPedido.append( items );
-
+        vista.btnconfirmar.attr("disabled", true);
         if (carrito && carrito.length>0){
+            vista.btnconfirmar.attr("disabled", false);
             vista.contenedorPedido.find('.btn-act').on('click', vista.actualizarPedido);
         }
 
